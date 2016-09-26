@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10">
+        {% for job in jobs %}
+            {% if job.status == 1 %}
+                {% set class = 'primary' %}
+            {% elseif job.status == 0 %}
+                {% set class = 'warning' %}
+            {% else %}
+                {% set class = 'danger' %}
+            {% endif %}    
+            <div class="panel panel-{{class}}">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{job.title}}</h3>
+                </div>
+                <div class="panel-body">
+                    <p>{{job.description}}</p>
+                    <p><b>Reply to:</b> <u>{{job.mail}}</u></p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+parameters:
+    user.class:  MySecurityBundle\Security\User
+    user_provider.class: MySecurityBundle\Security\UserProvider
+    password_encoder.class: MySecurityBundle\Security\PasswordEncoder
+    
+
+services:
+    user:
+        class : "%user.class%"
+        
+    user_provider:
+        class: "%user_provider.class%"
+        arguments: ["@user"]
+        
+    password_encoder:
+        class: "%password_encoder.class%"

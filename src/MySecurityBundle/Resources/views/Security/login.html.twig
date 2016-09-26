@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}    
+<div id="loginbox" class="mainbox col-md-4 col-md-offset-4">                 
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Enter your login data</div>
+                        <!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>-->
+                    </div>     
+
+                    <div style="padding-top:30px; background-color: " class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                             
+                            <form class="" role="form" action="{{ path('login_check') }}" method="post">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-user"></span>
+                                    <input type="text" class="form-control input-lg" placeholder="Username" value="{{ last_username }}" id="username"  name="_username" required autofocus>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                                    <input type="password" class="form-control input-lg" placeholder="Password" id="password"  name="_password" required>
+                                </div>
+                            <br/>
+                            <input class="btn btn-lg btn-success pull-right" type="submit" value="Login">
+                            {% if error %}
+                                <br/><br/><br/><br/>
+                                <div class="alert alert-warning">
+                                        
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong>Warning!</strong><br/><small>Invalid username and password. Please try again.</small>
+                                </div>
+                            {% endif %}
+                            </form>
+
+
+                    </div>                     
+            </div>  
+        </div>
+{% endblock %}

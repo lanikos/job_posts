@@ -1,0 +1,16 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: 3306
+    database_name: test
+    database_user: root
+    database_password: null
+    
+#    mailer_transport: gmail
+#    mailer_host: smtp.gmail.com
+#    mailer_port: 465
+#    mailer_encryption: ssl
+#    mailer_user: lanikos@gmail.com
+#    mailer_password: 
+    
+    secret: 34e9deb5221eedf941f7d65517d354d6c57f739

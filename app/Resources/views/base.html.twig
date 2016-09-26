@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8" />
+        <title>{% block title %}Proba{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/MainBundle/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/MainBundle/js/jQuery/jquery.js') }}"></script>
+            <script src="{{ asset('bundles/MainBundle/bootstrap/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" >
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{path('homepage')}}">Jobs @ Piratetech</a>
+            </div>
+            
+            {% if app.user is not empty %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{path('logout')}}">Logout ({{app.user.username}})</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{path('admin')}}">Login</a></li>
+                </ul>
+            {% endif %}
+            
+            {% if is_granted('ROLE_MANAGER') %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{path('new')}}">New job post</a></li>
+                </ul>
+            {% elseif is_granted('ROLE_MODERATOR') %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{path('moderator')}}">Show all posts</a></li>
+                </ul>
+            {% endif %}         
+        </nav>
+        <div style="margin-top: 100px">
+        {% block body %}{% endblock %}
+        </div>
+    </body>
+    
+</html>

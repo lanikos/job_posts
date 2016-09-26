@@ -1,0 +1,38 @@
+security:
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        secured_area:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout:
+                path: /logout
+                target: /
+                invalidate_session: false
+        login_firewall:
+            pattern:    ^/login$
+            anonymous:  ~
+    
+    providers:
+        webservice:
+            id: user_provider
+            
+    encoders:
+        MySecurityBundle\Security\User:
+            id: password_encoder
+    
+    role_hierarchy:
+        ROLE_USER: [ROLE_MANAGER, ROLE_MODERATOR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+               
+    access_control:
+        - { path: ^/login,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/new, roles: [ROLE_MANAGER] }
+        - { path: ^/publish, roles: [ROLE_MODERATOR] }
+        - { path: ^/spam, roles: [ROLE_MODERATOR] }
+        - { path: ^/admin, roles: [ROLE_MANAGER, ROLE_MODERATOR] }
+        

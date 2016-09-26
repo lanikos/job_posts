@@ -1,0 +1,8 @@
+main:
+    resource: "@MainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+security:
+    resource: "@MySecurityBundle/Resources/config/routing.yml"
+    prefix:   /
